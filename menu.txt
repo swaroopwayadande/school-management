@@ -1,0 +1,64 @@
+3. Setup and Start MySQL Database
+Open MySQL shell or Workbench
+
+Create the database:
+
+sql
+CREATE DATABASE schooldb;
+USE schooldb;
+Create the schools table:
+
+sql
+CREATE TABLE schools (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  address VARCHAR(255),
+  city VARCHAR(100),
+  state VARCHAR(100),
+  contact VARCHAR(20),
+  email_id VARCHAR(255)
+);
+4. Configure Backend (school-app-backend)
+Open school-app-backend folder
+
+Edit server.js and update MySQL credentials
+
+js
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "<YOUR_MYSQL_USERNAME>",
+  password: "<YOUR_MYSQL_PASSWORD>",
+  database: "schooldb",
+});
+Install dependencies and start backend
+
+bash
+cd school-app-backend
+npm install
+npm run dev    # or "node server.js"
+Backend server will run on http://localhost:5000
+
+5. Configure Frontend (school-app-frontend)
+Open school-app-frontend folder
+
+Install dependencies and start frontend
+
+bash
+cd school-app-frontend
+npm install
+npm run dev
+The app will be available at http://localhost:5173 (or specified by Vite)
+
+6. Usage
+Use the Add School page to add new schools
+
+Use the Show Schools page to view all schools stored in the database
+
+7. Troubleshooting
+Verify MySQL service is running
+
+Check server.js has correct database credentials
+
+Make sure ports 5000 (backend) and 5173 (frontend) are free
+
+Run npm install again if packages are missing
