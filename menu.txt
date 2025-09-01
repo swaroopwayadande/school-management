@@ -1,3 +1,9 @@
+1) make folder name school project
+
+2) cd in folder && git clone https://github.com/swaroopwayadande/school-management.git
+
+
+
 3. Setup and Start MySQL Database
 Open MySQL shell or Workbench
 
