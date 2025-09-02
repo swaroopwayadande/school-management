@@ -1,57 +1,33 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4";
 
 export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/schools").then(res => setSchools(res.data));
+    axios.get("http://localhost:5000/schools").then((res) => setSchools(res.data));
   }, []);
 
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      minHeight: "100vh",
-      padding: 20,
-      background: "#f9fafb",
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    }}>
-      <div style={{ maxWidth: 1200, width: "100%" }}>
-        <h2 style={{ textAlign: "center", color: "#2563eb", marginBottom: 30 }}>Student list</h2>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: 24,
-        }}>
+    <div className="flex justify-center items-start min-h-screen py-8 bg-gray-50 font-sans">
+      <div className="max-w-6xl w-full">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">Student list</h2>
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {schools.map((sch) => (
             <div
               key={sch.id}
-              style={{
-                background: "#fff",
-                borderRadius: 12,
-                boxShadow: "0 8px 16px rgba(0,0,0,0.12)",
-                padding: 24,
-                transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                cursor: "default",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-                e.currentTarget.style.boxShadow = "0 12px 24px rgba(0,0,0,0.18)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "0 8px 16px rgba(0,0,0,0.12)";
-              }}
+              className="
+                bg-white rounded-xl shadow-lg p-6 transition
+                duration-300 ease-in-out cursor-default
+                hover:scale-105 hover:shadow-2xl
+              "
             >
-              <h3 style={{ margin: "0 0 12px", color: "#111827" }}>{sch.name}</h3>
-              <p style={{ margin: "0 0 10px", color: "#374151", fontWeight: "600" }}>{sch.address}</p>
-              <p style={{ margin: "0 0 10px", color: "#6b7280" }}>
-                {sch.city}, {sch.state}
-              </p>
-              <p style={{ margin: "0 0 10px", color: "#4b5563" }}>Contact: {sch.contact}</p>
-              <p style={{ margin: 0, color: "#2563eb", fontWeight: "bold" }}>Email: {sch.email_id}</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">{sch.name}</h3>
+              <p className="font-semibold text-gray-700 mb-2">{sch.address}</p>
+              <p className="text-gray-500 mb-2">{sch.city}, {sch.state}</p>
+              <p className="text-gray-600 mb-2">Contact: {sch.contact}</p>
+              <p className="text-blue-600 font-bold mb-0">Email: {sch.email_id}</p>
             </div>
           ))}
         </div>

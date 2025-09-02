@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
+
+
 
 export default function AddSchool() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -10,101 +13,73 @@ export default function AddSchool() {
     reset();
   };
 
-  // Inline style objects
-  const inputStyle = {
-    marginBottom: 7,
-    padding: "10px",
-    fontSize: 16,
-    border: "1px solid #ddd",
-    borderRadius: 5
-  };
-
-  const errorStyle = {
-    color: "#eb3737",
-    fontSize: 13,
-    marginBottom: 6,
-    marginLeft: 2
-  };
-
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "#f5f8fa"
-    }}>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        style={{
-          background: "#fff",
-          padding: "32px 24px",
-          borderRadius: 12,
-          boxShadow: "0 6px 24px rgba(0,0,0,0.06)",
-          display: "flex",
-          flexDirection: "column",
-          width: 350
-        }}
+        className="bg-white p-8 rounded-xl shadow-lg flex flex-col w-full max-w-sm"
       >
-        <h2 style={{ marginBottom: 24, color: "#2563eb", textAlign: "center" }}>Student Registration</h2>
+        <h2 className="text-2xl font-bold text-center text-blue-600 mb-8">Student Registration</h2>
 
         <input
           {...register("name", { required: true })}
           placeholder="Name"
-          style={inputStyle}
+          className={`mb-3 p-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+            errors.name ? "border-red-500" : "border-gray-300"
+          }`}
         />
-        {errors.name && <span style={errorStyle}>Name is required</span>}
+        {errors.name && <p className="text-red-600 text-sm mb-3 ml-1">Name is required</p>}
 
         <input
           {...register("address", { required: true })}
           placeholder="Address"
-          style={inputStyle}
+          className={`mb-3 p-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+            errors.address ? "border-red-500" : "border-gray-300"
+          }`}
         />
-        {errors.address && <span style={errorStyle}>Address is required</span>}
+        {errors.address && <p className="text-red-600 text-sm mb-3 ml-1">Address is required</p>}
 
         <input
           {...register("city", { required: true })}
           placeholder="City"
-          style={inputStyle}
+          className={`mb-3 p-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+            errors.city ? "border-red-500" : "border-gray-300"
+          }`}
         />
-        {errors.city && <span style={errorStyle}>City is required</span>}
+        {errors.city && <p className="text-red-600 text-sm mb-3 ml-1">City is required</p>}
 
         <input
           {...register("state", { required: true })}
           placeholder="State"
-          style={inputStyle}
+          className={`mb-3 p-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+            errors.state ? "border-red-500" : "border-gray-300"
+          }`}
         />
-        {errors.state && <span style={errorStyle}>State is required</span>}
+        {errors.state && <p className="text-red-600 text-sm mb-3 ml-1">State is required</p>}
 
         <input
           {...register("contact", { required: true, pattern: /^[0-9]+$/ })}
           placeholder="Contact"
-          style={inputStyle}
+          className={`mb-3 p-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+            errors.contact ? "border-red-500" : "border-gray-300"
+          }`}
         />
-        {errors.contact && <span style={errorStyle}>Valid contact number required</span>}
+        {errors.contact && <p className="text-red-600 text-sm mb-3 ml-1">Valid contact number required</p>}
 
         <input
           {...register("email_id", { required: true, pattern: /^\S+@\S+$/i })}
           placeholder="Email"
-          style={inputStyle}
+          className={`mb-3 p-3 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+            errors.email_id ? "border-red-500" : "border-gray-300"
+          }`}
         />
-        {errors.email_id && <span style={errorStyle}>Valid email required</span>}
+        {errors.email_id && <p className="text-red-600 text-sm mb-3 ml-1">Valid email required</p>}
 
         <button
           type="submit"
-          style={{
-            marginTop: 14,
-            padding: "10px 0",
-            background: "#2563eb",
-            color: "#fff",
-            fontWeight: "bold",
-            border: "none",
-            borderRadius: 6,
-            cursor: "pointer",
-            letterSpacing: 1
-          }}
+          className="mt-4 py-3 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition-all tracking-wide"
         >
-          Add Student 
+          Add Student
         </button>
       </form>
     </div>
